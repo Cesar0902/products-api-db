@@ -23,7 +23,7 @@ GET {{baseUrl}}/productos/disponibles
 Content-Type: {{contentType}}
 
 ### 5. Obtener producto por ID (existente)
-GET {{baseUrl}}/productos/1
+GET {{baseUrl}}/productos/2
 Content-Type: {{contentType}}
 
 ### 6. Obtener producto por ID (no existente)
@@ -71,6 +71,7 @@ Content-Type: {{contentType}}
 
 {
   "nombre": "Producto Incompleto",
+  "descripcion": "Producto",
   "precio": 100
 }
 
@@ -91,7 +92,7 @@ PATCH {{baseUrl}}/productos/1
 Content-Type: {{contentType}}
 
 {
-  "precio": 1100.00,
+  "precio": 00.00,
   "disponible": false
 }
 

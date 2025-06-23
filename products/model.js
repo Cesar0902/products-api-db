@@ -79,10 +79,11 @@ export class ProductModel {
     // Generate new ID
     const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1
     
-    // Create new product with current timestamp
+    // Create new product with current timestamp and default values
     const newProduct = {
       id: newId,
       ...input,
+      disponible: input.disponible ?? true, // Default to true if not provided
       fecha_ingreso: new Date().toISOString()
     }
 

@@ -17,9 +17,8 @@ const productSchema = z.object({
   }).min(10, 'La descripción debe tener mínimo 10 caracteres'),
   
   disponible: z.boolean({
-    required_error: 'El campo disponible es requerido',
     invalid_type_error: 'El campo disponible debe ser un boolean'
-  })
+  }).optional()
 })
 
 export function validateProduct(input) {

@@ -12,6 +12,7 @@ export const createProductRouter = ({ productModel }) => {
   productsRouter.get('/:id', productController.getById)
   productsRouter.delete('/:id', productController.delete)
   productsRouter.put('/:id', productController.update)
+  productsRouter.patch('/:id', productController.update)
 
   return productsRouter
 }

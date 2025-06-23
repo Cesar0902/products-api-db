@@ -163,9 +163,9 @@
   {
     "id": 21,
     "nombre": "Laptop Gaming",
-    "precio": 1200.99,
-    "descripcion": "Laptop para gaming de alta gama",
+    "precio": 1500,
+    "descripcion": "Otra laptop gaming",
     "disponible": true,
-    "fecha_ingreso": "2025-06-23T01:00:24.462Z"
+    "fecha_ingreso": "2025-06-23T01:37:02.777Z"
   }
 ]
