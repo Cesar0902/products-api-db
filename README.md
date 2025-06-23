@@ -19,6 +19,22 @@ npm run dev
 node infrastructure/http/server.js
 ```
 
+### Alternativa con Node.js 22+
+
+Si tienes **Node.js 22 o superior**, puedes usar la nueva funcionalidad `node --run` para ejecutar scripts definidos en el package.json directamente, sin necesidad de pasar por npm:
+
+```bash
+# Ejecutar scripts sin npm (Node.js 22+)
+node --run start    # Equivale a npm run start
+node --run dev      # Equivale a npm run dev
+```
+
+Esta funcionalidad es útil cuando quieres ejecutar scripts rápidamente con menos sobrecarga, ya que evita lanzar procesos adicionales como lo hace npm run.
+
+> ⚠️ **Nota importante:**  
+> Las dependencias deben estar previamente instaladas.  
+> `node --run` **no reemplaza** a `npm install`, solo evita usar `npm run`.
+
 La API estará disponible en la URL configurada en `BASE_URL` (por defecto `http://localhost:3000`)
 
 ## ⚙️ Variables de Entorno

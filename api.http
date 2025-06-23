@@ -92,7 +92,7 @@ PATCH {{baseUrl}}/productos/1
 Content-Type: {{contentType}}
 
 {
-  "precio": 00.00,
+  "precio": 20.00,
   "disponible": false
 }
 

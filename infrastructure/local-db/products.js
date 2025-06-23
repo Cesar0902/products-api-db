@@ -2,9 +2,9 @@
 [
   {
     "id": 1,
-    "nombre": "Camisa",
-    "precio": 479.38,
-    "descripcion": "Este es un producto llamado Camisa de excelente calidad.",
+    "nombre": "Laptop Gaming Pro",
+    "precio": 20,
+    "descripcion": "Laptop gaming profesional actualizada",
     "disponible": false,
     "fecha_ingreso": "2025-06-22T23:45:05.407345"
   },
