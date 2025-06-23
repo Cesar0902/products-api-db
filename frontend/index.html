@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Productos - Frontend</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h1><i class="fas fa-box"></i> Gestión de Productos</h1>
+      <div class="header-actions">
+        <button id="addProductBtn" class="btn btn-primary">
+          <i class="fas fa-plus"></i> Nuevo Producto
+        </button>
+        <button id="refreshBtn" class="btn btn-secondary">
+          <i class="fas fa-sync-alt"></i> Actualizar
+        </button>
+      </div>
+    </header>
+
+    <!-- Filtros -->
+    <div class="filters">
+      <div class="filter-group">
+        <label for="filterAvailable">Filtrar por disponibilidad:</label>
+        <select id="filterAvailable">
+          <option value="">Todos los productos</option>
+          <option value="true">Solo disponibles</option>
+          <option value="false">No disponibles</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="searchInput">Buscar productos:</label>
+        <input type="text" id="searchInput" placeholder="Buscar por nombre...">
+      </div>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number" id="totalProducts">0</div>
+        <div class="stat-label">Total Productos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="availableProducts">0</div>
+        <div class="stat-label">Disponibles</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="unavailableProducts">0</div>
+        <div class="stat-label">No Disponibles</div>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="loading" class="loading hidden">
+      <i class="fas fa-spinner fa-spin"></i> Cargando...
+    </div>
+
+    <!-- Mensajes -->
+    <div id="messageContainer"></div>
+
+    <!-- Lista de productos -->
+    <div class="products-container">
+      <div id="productsGrid" class="products-grid">
+        <!-- Los productos se cargarán aquí dinámicamente -->
+      </div>
+      <div id="emptyState" class="empty-state hidden">
+        <i class="fas fa-box-open"></i>
+        <h3>No hay productos</h3>
+        <p>Agrega tu primer producto para comenzar</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para crear/editar producto -->
+  <div id="productModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Nuevo Producto</h2>
+        <button id="closeModal" class="close-btn">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <form id="productForm" class="modal-body">
+        <div class="form-group">
+          <label for="productName">Nombre del producto <span class="required">*</span></label>
+          <input type="text" id="productName" name="nombre" required>
+          <div class="error-message" id="nameError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="productPrice">Precio <span class="required">*</span></label>
+          <input type="number" id="productPrice" name="precio" step="0.01" min="0.01" required>
+          <div class="error-message" id="priceError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="productCategory">Categoría</label>
+          <input type="text" id="productCategory" name="categoria" placeholder="Ej: Electrónicos">
+        </div>
+
+        <div class="form-group">
+          <label for="productDescription">Descripción <span class="required">*</span></label>
+          <textarea id="productDescription" name="descripcion" rows="3" minlength="10" required></textarea>
+          <div class="error-message" id="descriptionError"></div>
+          <small class="help-text">Mínimo 10 caracteres</small>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="productAvailable" name="disponible" checked>
+            <span class="checkmark"></span>
+            Producto disponible
+          </label>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" id="cancelBtn" class="btn btn-secondary">Cancelar</button>
+        <button type="submit" id="saveBtn" form="productForm" class="btn btn-primary">
+          <i class="fas fa-save"></i> Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de confirmación para eliminar -->
+  <div id="deleteModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Confirmar Eliminación</h2>
+        <button id="closeDeleteModal" class="close-btn">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="delete-confirmation">
+          <i class="fas fa-exclamation-triangle"></i>
+          <p>¿Estás seguro de que deseas eliminar este producto?</p>
+          <p><strong id="deleteProductName"></strong></p>
+          <p class="warning">Esta acción no se puede deshacer.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cancelDeleteBtn" class="btn btn-secondary">Cancelar</button>
+        <button type="button" id="confirmDeleteBtn" class="btn btn-danger">
+          <i class="fas fa-trash"></i> Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

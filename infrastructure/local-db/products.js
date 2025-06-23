@@ -1,10 +1,9 @@
-// filepath: /home/cesar/Documents/Clases/diseño/products-api/infrastructure/local-db/products.js
 [
   {
     "id": 1,
-    "nombre": "Laptop Gaming Pro",
-    "precio": 20,
-    "descripcion": "Laptop gaming profesional actualizada",
+    "nombre": "Camisa",
+    "precio": 479.38,
+    "descripcion": "Este es un producto llamado Camisa de excelente calidad.",
     "disponible": false,
     "fecha_ingreso": "2025-06-22T23:45:05.407345"
   },
@@ -159,13 +158,5 @@
     "descripcion": "Este es un producto llamado Botella de excelente calidad.",
     "disponible": false,
     "fecha_ingreso": "2025-06-03T23:45:05.407345"
-  },
-  {
-    "id": 21,
-    "nombre": "Laptop Gaming",
-    "precio": 1500,
-    "descripcion": "Otra laptop gaming",
-    "disponible": true,
-    "fecha_ingreso": "2025-06-23T01:37:02.777Z"
   }
 ]
