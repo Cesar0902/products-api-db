@@ -1,0 +1,32 @@
+{
+  "name": "products-api",
+  "version": "1.0.0",
+  "description": "API RESTful para gestión de productos de una tienda",
+  "main": "infrastructure/http/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node infrastructure/http/server.js",
+    "dev": "node --watch infrastructure/http/server.js"
+  },
+  "keywords": [
+    "api",
+    "rest",
+    "products",
+    "express",
+    "nodejs"
+  ],
+  "author": "Cesar0902",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.18.2",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

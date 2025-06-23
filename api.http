@@ -1,0 +1,181 @@
+### Variables
+@baseUrl = {{$dotenv BASE_URL}}
+@contentType = application/json
+
+### ============================================
+### PRODUCTOS - API REST CLIENT
+### ============================================
+
+### 1. Obtener todos los productos
+GET {{baseUrl}}/productos
+Content-Type: {{contentType}}
+
+### 2. Obtener productos disponibles (query parameter)
+GET {{baseUrl}}/productos?disponible=true
+Content-Type: {{contentType}}
+
+### 3. Obtener productos no disponibles (query parameter)
+GET {{baseUrl}}/productos?disponible=false
+Content-Type: {{contentType}}
+
+### 4. Obtener productos disponibles (endpoint específico)
+GET {{baseUrl}}/productos/disponibles
+Content-Type: {{contentType}}
+
+### 5. Obtener producto por ID (existente)
+GET {{baseUrl}}/productos/1
+Content-Type: {{contentType}}
+
+### 6. Obtener producto por ID (no existente)
+GET {{baseUrl}}/productos/999
+Content-Type: {{contentType}}
+
+### 7. Crear nuevo producto (datos válidos)
+POST {{baseUrl}}/productos
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Laptop Gaming",
+  "precio": 1200.99,
+  "categoria": "Electrónicos",
+  "disponible": true,
+  "descripcion": "Laptop para gaming de alta gama"
+}
+
+### 8. Crear nuevo producto (precio como string)
+POST {{baseUrl}}/productos
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Mouse Inalámbrico",
+  "precio": "25.50",
+  "categoria": "Accesorios",
+  "disponible": true,
+  "descripcion": "Mouse ergonómico inalámbrico"
+}
+
+### 9. Crear producto con error de validación (precio negativo)
+POST {{baseUrl}}/productos
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Producto Inválido",
+  "precio": -10,
+  "categoria": "Test",
+  "disponible": true
+}
+
+### 10. Crear producto con error de validación (campos faltantes)
+POST {{baseUrl}}/productos
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Producto Incompleto",
+  "precio": 100
+}
+
+### 11. Crear producto duplicado (debería fallar)
+POST {{baseUrl}}/productos
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Laptop Gaming",
+  "precio": 1500,
+  "categoria": "Electrónicos",
+  "disponible": true,
+  "descripcion": "Otra laptop gaming"
+}
+
+### 12. Actualizar producto existente (datos parciales)
+PATCH {{baseUrl}}/productos/1
+Content-Type: {{contentType}}
+
+{
+  "precio": 1100.00,
+  "disponible": false
+}
+
+### 13. Actualizar producto (todos los campos)
+PATCH {{baseUrl}}/productos/1
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Laptop Gaming Pro",
+  "precio": 1300.99,
+  "categoria": "Electrónicos Premium",
+  "disponible": true,
+  "descripcion": "Laptop gaming profesional actualizada"
+}
+
+### 14. Actualizar producto con error de validación
+PATCH {{baseUrl}}/productos/1
+Content-Type: {{contentType}}
+
+{
+  "precio": "precio_inválido",
+  "disponible": "no_booleano"
+}
+
+### 15. Actualizar producto no existente
+PATCH {{baseUrl}}/productos/999
+Content-Type: {{contentType}}
+
+{
+  "precio": 500
+}
+
+### 16. Eliminar producto existente
+DELETE {{baseUrl}}/productos/2
+Content-Type: {{contentType}}
+
+### 17. Eliminar producto no existente
+DELETE {{baseUrl}}/productos/999
+Content-Type: {{contentType}}
+
+### ============================================
+### CASOS DE PRUEBA ADICIONALES
+### ============================================
+
+### 18. Crear producto con descripción muy larga (más de 500 caracteres)
+POST {{baseUrl}}/productos
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Producto Descripción Larga",
+  "precio": 50,
+  "categoria": "Test",
+  "disponible": true,
+  "descripcion": "Esta es una descripción muy larga que supera los 500 caracteres permitidos por el esquema de validación. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium."
+}
+
+### 19. Crear producto con precio con muchos decimales
+POST {{baseUrl}}/productos
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Producto Precio Decimal",  
+  "precio": 99.999999,
+  "categoria": "Test",
+  "disponible": true,
+  "descripcion": "Producto para probar precisión decimal"
+}
+
+### 20. Probar con datos vacíos
+POST {{baseUrl}}/productos
+Content-Type: {{contentType}}
+
+{}
+
+### ============================================
+### NOTAS DE USO
+### ============================================
+### 
+### Para usar este archivo:
+### 1. Instala la extensión "REST Client" en VS Code
+### 2. Asegúrate de que el servidor esté corriendo en http://localhost:3000
+### 3. Haz clic en "Send Request" sobre cada petición
+### 4. Puedes modificar las variables al inicio del archivo si cambias el puerto
+### 
+### Los productos se almacenan en memoria, por lo que se reinician al reiniciar el servidor
+### 
+### ============================================
