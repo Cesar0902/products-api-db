@@ -1,0 +1,56 @@
+# Continuación de tarea de API de tienda
+
+## 📌 Descripción
+
+Esta API permite gestionar productos en una tienda virtual. Cada producto puede pertenecer a una **categoría**, lo que permite clasificarlos y consultarlos más fácilmente.
+
+---
+
+## 📦 Modelo de Datos
+
+### Producto
+
+```json
+{
+  "id": 1,
+  "nombre": "Laptop",
+  "precio": 599.99,
+  "descripcion": "Laptop moderna con 8GB RAM y 256GB SSD",
+  "disponible": true,
+  "fecha_ingreso": "2025-07-06T14:00:00.000Z",
+  "categoriaId": 2
+}
+```
+
+### Categoría
+
+```json
+{
+  "id": 2,
+  "nombre": "Tecnología"
+}
+```
+
+---
+
+## 🧩 Nuevas Rutas para Categorías
+
+| Método | Ruta                   | Descripción                        |
+|--------|------------------------|------------------------------------|
+| GET    | `/categorias`          | Lista todas las categorías         |
+| GET    | `/categorias/:id`      | Obtiene una categoría por ID       |
+| POST   | `/categorias`          | Crea una nueva categoría           |
+| PUT    | `/categorias/:id`      | Edita una categoría existente      |
+| DELETE | `/categorias/:id`      | Elimina una categoría por ID       |
+
+---
+
+
+## ✅ Validaciones importantes
+
+- El nombre de la categoría debe ser obligatorio y único.
+- Al crear un producto, `categoriaId` debe existir.
+- No se puede eliminar una categoría si tiene productos asignados.
+
+---
+

@@ -158,5 +158,13 @@
     "descripcion": "Este es un producto llamado Botella de excelente calidad.",
     "disponible": false,
     "fecha_ingreso": "2025-06-03T23:45:05.407345"
+  },
+  {
+    "id": 21,
+    "nombre": "Pistola",
+    "precio": 50,
+    "descripcion": "Mata gente.",
+    "disponible": true,
+    "fecha_ingreso": "2025-06-23T18:32:14.098Z"
   }
 ]

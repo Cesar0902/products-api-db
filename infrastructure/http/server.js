@@ -1,9 +1,7 @@
 import 'dotenv/config'
 import { createApp } from '../../app.js'
 import { ProductModel } from '../../products/model.js'
-import { db } from '../connection.js'
-
-console.log('Datos de conexión a la base de datos:', db)
+import { db } from '../database/connection.js'
 
 const productModel = new ProductModel({ db })
 
