@@ -1,9 +1,12 @@
 import { Router } from "express";
 import { ProductController } from "./controller.js";
 
-export const createProductRouter = ({ productModel }) => {
+export const createProductRouter = ({ productModel, categoriesModel }) => {
   const productsRouter = Router();
-  const productController = new ProductController({ productModel });
+  const productController = new ProductController({
+    productModel,
+    categoriesModel,
+  });
 
   productsRouter.get("/", productController.getAll);
   productsRouter.post("/", productController.create);
