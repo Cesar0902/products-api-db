@@ -1,0 +1,27 @@
+### Variables
+@baseUrl = {{$dotenv BASE_URL}}
+@contentType = application/json
+
+### 1. Obtener todos los productos
+GET {{baseUrl}}/productos
+Content-Type: {{contentType}}
+
+### 2. Obtener productos disponibles (query parameter)
+GET {{baseUrl}}/productos?disponible=true
+Content-Type: {{contentType}}
+
+### 3. Obtener productos no disponibles (query parameter)
+GET {{baseUrl}}/productos?disponible=false
+Content-Type: {{contentType}}
+
+### 4. Obtener productos disponibles (endpoint específico)
+GET {{baseUrl}}/productos/disponibles
+Content-Type: {{contentType}}
+
+### 5. Obtener producto por ID (existente)
+GET {{baseUrl}}/productos/3
+Content-Type: {{contentType}}
+
+### 6. Obtener producto por ID (no existente)
+GET {{baseUrl}}/productos/999
+Content-Type: {{contentType}}

@@ -2,34 +2,6 @@
 @baseUrl = {{$dotenv BASE_URL}}
 @contentType = application/json
 
-### ============================================
-### PRODUCTOS - API REST CLIENT
-### ============================================
-
-### 1. Obtener todos los productos
-GET {{baseUrl}}/productos
-Content-Type: {{contentType}}
-
-### 2. Obtener productos disponibles (query parameter)
-GET {{baseUrl}}/productos?disponible=true
-Content-Type: {{contentType}}
-
-### 3. Obtener productos no disponibles (query parameter)
-GET {{baseUrl}}/productos?disponible=false
-Content-Type: {{contentType}}
-
-### 4. Obtener productos disponibles (endpoint específico)
-GET {{baseUrl}}/productos/disponibles
-Content-Type: {{contentType}}
-
-### 5. Obtener producto por ID (existente)
-GET {{baseUrl}}/productos/2
-Content-Type: {{contentType}}
-
-### 6. Obtener producto por ID (no existente)
-GET {{baseUrl}}/productos/999
-Content-Type: {{contentType}}
-
 ### 7. Crear nuevo producto (datos válidos)
 POST {{baseUrl}}/productos
 Content-Type: {{contentType}}
@@ -37,7 +9,7 @@ Content-Type: {{contentType}}
 {
   "nombre": "Laptop Gaming",
   "precio": 1200.99,
-  "categoria": "Electrónicos",
+  "categoria": "Tecnología",
   "disponible": true,
   "descripcion": "Laptop para gaming de alta gama"
 }
@@ -82,56 +54,10 @@ Content-Type: {{contentType}}
 {
   "nombre": "Laptop Gaming",
   "precio": 1500,
-  "categoria": "Electrónicos",
+  "categoria": "Tecnología",
   "disponible": true,
   "descripcion": "Otra laptop gaming"
 }
-
-### 12. Actualizar producto existente (datos parciales)
-PATCH {{baseUrl}}/productos/1
-Content-Type: {{contentType}}
-
-{
-  "precio": 20.00,
-  "disponible": false
-}
-
-### 13. Actualizar producto (todos los campos)
-PATCH {{baseUrl}}/productos/1
-Content-Type: {{contentType}}
-
-{
-  "nombre": "Laptop Gaming Pro",
-  "precio": 1300.99,
-  "categoria": "Electrónicos Premium",
-  "disponible": true,
-  "descripcion": "Laptop gaming profesional actualizada"
-}
-
-### 14. Actualizar producto con error de validación
-PATCH {{baseUrl}}/productos/1
-Content-Type: {{contentType}}
-
-{
-  "precio": "precio_inválido",
-  "disponible": "no_booleano"
-}
-
-### 15. Actualizar producto no existente
-PATCH {{baseUrl}}/productos/999
-Content-Type: {{contentType}}
-
-{
-  "precio": 500
-}
-
-### 16. Eliminar producto existente
-DELETE {{baseUrl}}/productos/2
-Content-Type: {{contentType}}
-
-### 17. Eliminar producto no existente
-DELETE {{baseUrl}}/productos/999
-Content-Type: {{contentType}}
 
 ### ============================================
 ### CASOS DE PRUEBA ADICIONALES
@@ -166,17 +92,3 @@ POST {{baseUrl}}/productos
 Content-Type: {{contentType}}
 
 {}
-
-### ============================================
-### NOTAS DE USO
-### ============================================
-### 
-### Para usar este archivo:
-### 1. Instala la extensión "REST Client" en VS Code
-### 2. Asegúrate de que el servidor esté corriendo en http://localhost:3000
-### 3. Haz clic en "Send Request" sobre cada petición
-### 4. Puedes modificar las variables al inicio del archivo si cambias el puerto
-### 
-### Los productos se almacenan en memoria, por lo que se reinician al reiniciar el servidor
-### 
-### ============================================

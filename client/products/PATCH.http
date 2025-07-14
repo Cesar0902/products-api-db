@@ -1,0 +1,41 @@
+### Variables
+@baseUrl = {{$dotenv BASE_URL}}
+@contentType = application/json
+
+### 12. Actualizar producto existente (datos parciales)
+PATCH {{baseUrl}}/productos/1
+Content-Type: {{contentType}}
+
+{
+  "precio": 20.00,
+  "disponible": false
+}
+
+### 13. Actualizar producto (todos los campos)
+PATCH {{baseUrl}}/productos/1
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Laptop Gaming Pro",
+  "precio": 1300.99,
+  "categoria": "Electrónicos Premium",
+  "disponible": true,
+  "descripcion": "Laptop gaming profesional actualizada"
+}
+
+### 14. Actualizar producto con error de validación
+PATCH {{baseUrl}}/productos/1
+Content-Type: {{contentType}}
+
+{
+  "precio": "precio_inválido",
+  "disponible": "no_booleano"
+}
+
+### 15. Actualizar producto no existente
+PATCH {{baseUrl}}/productos/999
+Content-Type: {{contentType}}
+
+{
+  "precio": 500
+}

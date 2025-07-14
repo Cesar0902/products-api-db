@@ -1,0 +1,11 @@
+### Variables
+@baseUrl = {{$dotenv BASE_URL}}
+@contentType = application/json
+
+### 16. Eliminar producto existente
+DELETE {{baseUrl}}/productos/2
+Content-Type: {{contentType}}
+
+### 17. Eliminar producto no existente
+DELETE {{baseUrl}}/productos/999
+Content-Type: {{contentType}}
