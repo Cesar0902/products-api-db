@@ -85,9 +85,7 @@ export class ProductModel {
     } catch (error) {
       await this.db.rollback();
       console.error("Error en la transacción de creación de producto:", error);
-      throw new Error(
-        "No se pudo crear el producto debido a un error en la base de datos."
-      );
+      throw new Error("DATABASE_ERROR");
     }
   }
 

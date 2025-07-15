@@ -78,7 +78,7 @@ export class ProductService {
     }
 
     const { categoria } = validationResult.data;
-    const categoryExists = await this.categoriesModel.existsByName(categoria);
+    const categoryExists = await this.categoriesModel.getByName(categoria);
     if (!categoryExists) {
       throw new NotFoundError(`Categoría '${categoria}' no encontrada.`);
     }
@@ -91,15 +91,7 @@ export class ProductService {
         },
       });
     } catch (error) {
-      if (error.code === "ER_DUP_ENTRY") {
-        throw new DuplicateResourceError(
-          `Ya existe un producto con el nombre '${validationResult.data.nombre}'`,
-          "nombre",
-          validationResult.data.nombre,
-          "producto"
-        );
-      }
-      throw new DatabaseError("crear producto", error.message);
+      throw new DatabaseError("Error al crear producto", error.message);
     }
   }
 

@@ -3,7 +3,7 @@ export class CategoryModel {
     this.db = db;
   }
 
-  async existsByName(name) {
+  async getByName(name) {
     const categoryName = name.toLowerCase();
     const [categories] = await this.db.query(
       "SELECT id FROM categorias WHERE LOWER(nombre) = ?",
