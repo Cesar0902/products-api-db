@@ -1,0 +1,14 @@
+### Variables
+@baseUrl = {{$dotenv BASE_URL}}
+
+### 1. Eliminar categoría sin productos asignados
+DELETE {{baseUrl}}/categorias/1
+
+### 2. Eliminar categoría con productos asignados (debería fallar)
+DELETE {{baseUrl}}/categorias/2
+
+### 3. Eliminar categoría inexistente
+DELETE {{baseUrl}}/categorias/999
+
+### 4. Eliminar categoría con ID inválido
+DELETE {{baseUrl}}/categorias/abc

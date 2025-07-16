@@ -18,7 +18,7 @@ export class CategoryModel {
       return null;
     }
 
-    return categories;
+    return categories[0];
   }
 
   async getByName(name) {
@@ -46,5 +46,43 @@ export class CategoryModel {
       id: result.insertId,
       nombre,
     };
+  }
+
+  async update(id, categoryData) {
+    const { nombre } = categoryData;
+    const [result] = await this.db.query(
+      "UPDATE categorias SET nombre = ? WHERE id = ?",
+      [nombre, id]
+    );
+
+    if (result.affectedRows === 0) {
+      return null;
+    }
+
+    return {
+      id: parseInt(id),
+      nombre,
+    };
+  }
+
+  async delete(id) {
+    // Verificar si la categoría tiene productos asignados
+    const [products] = await this.db.query(
+      "SELECT id FROM productos WHERE categoriaId = ?",
+      [id]
+    );
+
+    if (products.length > 0) {
+      throw new Error(
+        "No se puede eliminar la categoría porque tiene productos asignados"
+      );
+    }
+
+    const [result] = await this.db.query(
+      "DELETE FROM categorias WHERE id = ?",
+      [id]
+    );
+
+    return result.affectedRows > 0;
   }
 }

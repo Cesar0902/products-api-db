@@ -53,23 +53,35 @@ export class CategoryController {
     }
   };
 
-  update = async (req, res) => {
-    const { id } = req.params;
-    const updatedCategory = await this.categoryService.updateCategory(
-      id,
-      req.body
-    );
+  update = async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const updatedCategory = await this.categoryService.updateCategory(
+        id,
+        req.body
+      );
 
-    res.status(updatedCategory.success ? 200 : 404).json(updatedCategory);
+      res.status(200).json({
+        success: true,
+        data: updatedCategory,
+        message: `Categoría con ID ${id} actualizada exitosamente`,
+      });
+    } catch (error) {
+      next(error);
+    }
   };
 
-  delete = async (req, res) => {
-    const { id } = req.params;
-    const result = await this.categoryService.deleteCategory(id);
+  delete = async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const result = await this.categoryService.deleteCategory(id);
 
-    res.status(result.statusCode).json({
-      success: result.success,
-      message: result.message,
-    });
+      res.status(200).json({
+        success: true,
+        message: result.message,
+      });
+    } catch (error) {
+      next(error);
+    }
   };
 }

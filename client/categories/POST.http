@@ -10,7 +10,7 @@ Content-Type: {{contentType}}
   "nombre": "Electrónica"
 }
 
-### 2. Crear nueva categoría (con error de validación)
+### 2. Crear nueva categoría (con error de validación - nombre muy corto)
 POST {{baseUrl}}/categorias
 Content-Type: {{contentType}}
 
@@ -18,10 +18,53 @@ Content-Type: {{contentType}}
   "nombre": "ad"
 }
 
-### 3. Crear nueva categoría (vacia)
+### 3. Crear nueva categoría (con error de validación - nombre vacío)
 POST {{baseUrl}}/categorias
 Content-Type: {{contentType}}
+
 {
-  "nombre": "",
+  "nombre": ""
 }
+
+### 4. Crear nueva categoría (con error de validación - nombre muy largo)
+POST {{baseUrl}}/categorias
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Esta es una categoría con un nombre extremadamente largo que supera el límite permitido de caracteres"
+}
+
+### 5. Crear nueva categoría (con nombre duplicado)
+POST {{baseUrl}}/categorias
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Electrónica"
+}
+
+### 6. Crear nueva categoría (sin campo nombre)
+POST {{baseUrl}}/categorias
+Content-Type: {{contentType}}
+
+{
+  "descripcion": "Categoría sin nombre"
+}
+
+### 7. Crear nueva categoría (campo nombre no es string)
+POST {{baseUrl}}/categorias
+Content-Type: {{contentType}}
+
+{
+  "nombre": 123
+}
+
+### 8. Crear nueva categoría (sin body)
+POST {{baseUrl}}/categorias
+Content-Type: {{contentType}}
+
+### 9. Crear nueva categoría (body vacío)
+POST {{baseUrl}}/categorias
+Content-Type: {{contentType}}
+
+{}
 

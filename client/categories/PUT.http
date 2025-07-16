@@ -1,0 +1,51 @@
+### Variables
+@baseUrl = {{$dotenv BASE_URL}}
+@contentType = application/json
+
+### 1. Actualizar categoría existente (con éxito)
+PUT {{baseUrl}}/categorias/1
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Tecnología Actualizada"
+}
+
+### 2. Actualizar categoría (con error de validación - nombre muy corto)
+PUT {{baseUrl}}/categorias/1
+Content-Type: {{contentType}}
+
+{
+  "nombre": "TI"
+}
+
+### 3. Actualizar categoría (con error de validación - nombre muy largo)
+PUT {{baseUrl}}/categorias/1
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Esta es una categoría con un nombre extremadamente largo que supera el límite permitido de caracteres"
+}
+
+### 4. Actualizar categoría (con error de validación - nombre vacío)
+PUT {{baseUrl}}/categorias/1
+Content-Type: {{contentType}}
+
+{
+  "nombre": ""
+}
+
+### 5. Actualizar categoría inexistente
+PUT {{baseUrl}}/categorias/999
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Categoría Nueva"
+}
+
+### 6. Actualizar categoría (con nombre duplicado)
+PUT {{baseUrl}}/categorias/2
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Electrónica"
+}
