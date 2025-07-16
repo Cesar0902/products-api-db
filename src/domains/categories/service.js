@@ -8,8 +8,7 @@ export class CategoryService {
   }
 
   async getCategoryById(id) {
-    const category = await this.categoriesModel.getById(id);
-    return category ? { success: true, data: category } : { success: false };
+    return this.categoriesModel.getById(id);
   }
 
   async createCategory(categoryData) {

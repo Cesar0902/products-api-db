@@ -1,4 +1,5 @@
 import { CategoryService } from "./service.js";
+import { NotFoundError } from "../../shared/errors/index.js";
 
 export class CategoryController {
   constructor({ categoriesModel }) {
@@ -20,12 +21,23 @@ export class CategoryController {
     }
   };
 
-  getById = async (req, res) => {
-    const { id } = req.params;
-    const result = await this.categoryService.getCategoryById(id);
+  getById = async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const category = await this.categoryService.getCategoryById(id);
 
-    const statusCode = result.success ? 200 : 404;
-    res.status(statusCode).json(result);
+      if (!category) {
+        throw new NotFoundError(`Categoría con ID ${id} no encontrada`);
+      }
+
+      res.status(200).json({
+        success: true,
+        data: category,
+        message: `Categoría con ID ${id} encontrada`,
+      });
+    } catch (error) {
+      next(error);
+    }
   };
 
   create = async (req, res, next) => {
