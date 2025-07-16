@@ -4,6 +4,7 @@ import {
   errorMiddleware,
 } from "./src/infrastructure/http/index.js";
 import { createProductRouter } from "./src/domains/products/router.js";
+import { createCategoryRouter } from "./src/domains/categories/router.js";
 
 export const createApp = ({ productModel, categoriesModel }) => {
   const app = express();
@@ -12,6 +13,7 @@ export const createApp = ({ productModel, categoriesModel }) => {
   app.disable("x-powered-by");
 
   app.use("/productos", createProductRouter({ productModel, categoriesModel }));
+  app.use("/categorias", createCategoryRouter({ categoriesModel }));
 
   app.use(errorMiddleware);
 

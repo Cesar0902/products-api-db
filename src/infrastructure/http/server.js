@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { createApp } from "../../../app.js";
-import { ProductModel } from "../../domains/products/model.js";
 import { db } from "../database/connection.js";
+import { ProductModel } from "../../domains/products/model.js";
 import { CategoryModel } from "../../domains/categories/model.js";
 
 const productModel = new ProductModel({ db });

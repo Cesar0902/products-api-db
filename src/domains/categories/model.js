@@ -3,6 +3,11 @@ export class CategoryModel {
     this.db = db;
   }
 
+  async getAll() {
+    const [categories] = await this.db.query("SELECT * FROM categorias");
+    return categories;
+  }
+
   async getByName(name) {
     const categoryName = name.toLowerCase();
     const [categories] = await this.db.query(
