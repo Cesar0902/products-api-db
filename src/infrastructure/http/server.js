@@ -5,9 +5,9 @@ import { ProductModel } from "../../domains/products/model.js";
 import { CategoryModel } from "../../domains/categories/model.js";
 
 const productModel = new ProductModel({ db });
-const categoriesModel = new CategoryModel({ db });
+const categoryModel = new CategoryModel({ db });
 
-const app = createApp({ productModel, categoriesModel });
+const app = createApp({ productModel, categoryModel });
 
 const PORT = process.env.PORT ?? 3000;
 const BASE_URL = process.env.BASE_URL ?? `http://localhost:${PORT}`;

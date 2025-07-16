@@ -10,6 +10,6 @@ Content-Type: {{contentType}}
 GET {{baseUrl}}/categorias/3
 Content-Type: {{contentType}}
 
-### 6. Obtener categoría por ID (no existente)
+### 3. Obtener categoría por ID (no existente)
 GET {{baseUrl}}/categorias/999
 Content-Type: {{contentType}}

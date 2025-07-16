@@ -2,8 +2,8 @@ import { CategoryService } from "./service.js";
 import { NotFoundError } from "../../shared/errors/index.js";
 
 export class CategoryController {
-  constructor({ categoriesModel }) {
-    this.categoryService = new CategoryService({ categoriesModel });
+  constructor({ categoryModel }) {
+    this.categoryService = new CategoryService({ categoryModel });
   }
 
   getAll = async (req, res, next) => {

@@ -18,8 +18,6 @@ export class CategoryModel {
       return null;
     }
 
-    console.log(`Se ha encontrado la categoria ${categories} con ID ${id}`);
-
     return categories;
   }
 
@@ -35,5 +33,18 @@ export class CategoryModel {
     }
 
     return categories[0];
+  }
+
+  async create(categoryData) {
+    const { nombre } = categoryData;
+    const [result] = await this.db.query(
+      "INSERT INTO categorias (nombre) VALUES (?)",
+      [nombre]
+    );
+
+    return {
+      id: result.insertId,
+      nombre,
+    };
   }
 }

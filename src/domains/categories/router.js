@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { CategoryController } from "./controller.js";
 
-export const createCategoryRouter = ({ categoriesModel }) => {
+export const createCategoryRouter = ({ categoryModel }) => {
   const categoriesRouter = Router();
-  const categoryController = new CategoryController({ categoriesModel });
+  const categoryController = new CategoryController({ categoryModel });
 
   categoriesRouter.get("/", categoryController.getAll);
   categoriesRouter.get("/:id", categoryController.getById);

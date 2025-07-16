@@ -1,0 +1,27 @@
+### Variables
+@baseUrl = {{$dotenv BASE_URL}}
+@contentType = application/json
+
+### 1. Crear nueva categoría (con éxito)
+POST {{baseUrl}}/categorias 
+Content-Type: {{contentType}}
+
+{
+  "nombre": "Electrónica"
+}
+
+### 2. Crear nueva categoría (con error de validación)
+POST {{baseUrl}}/categorias
+Content-Type: {{contentType}}
+
+{
+  "nombre": "ad"
+}
+
+### 3. Crear nueva categoría (vacia)
+POST {{baseUrl}}/categorias
+Content-Type: {{contentType}}
+{
+  "nombre": "",
+}
+
