@@ -68,7 +68,7 @@ export class CategoryModel {
   async delete(id) {
     // Verificar si la categoría tiene productos asignados
     const [products] = await this.db.query(
-      "SELECT id FROM productos WHERE categoriaId = ?",
+      "SELECT id FROM productos WHERE categoria_id = ?",
       [id]
     );
 
