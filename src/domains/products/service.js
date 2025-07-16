@@ -12,14 +12,8 @@ export class ProductService {
     this.categoriesModel = categoriesModel;
   }
 
-  async getAllProducts({ disponible } = {}) {
-    const products = await this.productModel.getAll({ disponible });
-
-    return {
-      success: products.length > 0,
-      data: products,
-      message: this._getMessageForProductList(products, disponible),
-    };
+  async getAllProducts({ disponible }) {
+    return this.productModel.getAll({ disponible });
   }
 
   async getProductById(id) {

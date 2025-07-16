@@ -1,13 +1,14 @@
-import { DuplicateResourceError } from "../../shared/errors/DuplicateResourceError.js";
+import {
+  DuplicateResourceError,
+  DatabaseError,
+} from "../../shared/errors/index.js";
 
 export class ProductModel {
   constructor({ db }) {
     this.db = db;
   }
 
-  async getAll({ disponible } = {}) {
-    const isAvailable = disponible === "true" || disponible === true;
-
+  async getAll({ disponible }) {
     if (disponible === undefined) {
       const [products] = await this.db.query("SELECT * FROM productos");
       return products;
@@ -15,9 +16,8 @@ export class ProductModel {
 
     const [products] = await this.db.query(
       "SELECT * FROM productos WHERE disponible = ?",
-      [isAvailable]
+      [disponible]
     );
-
     return products;
   }
 
@@ -74,8 +74,8 @@ export class ProductModel {
 
       // Verificar si el producto fue encontrado después de la inserción
       if (!newProduct) {
-        throw new Error(
-          `Producto con ID ${newProductId} no encontrado después de la inserción.`
+        throw new DatabaseError(
+          "Error en la creacion del producto: sin data retornada"
         );
       }
 
@@ -85,7 +85,7 @@ export class ProductModel {
     } catch (error) {
       await this.db.rollback();
       console.error("Error en la transacción de creación de producto:", error);
-      throw new Error("DATABASE_ERROR");
+      throw new DatabaseError("Error al crear el producto", error);
     }
   }
 

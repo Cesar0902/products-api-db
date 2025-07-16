@@ -1,16 +1,28 @@
 import { ProductService } from "./service.js";
+import { parseBooleanQueryParam } from "../../shared/utils/index.js";
 
 export class ProductController {
   constructor({ productModel, categoriesModel }) {
     this.productService = new ProductService({ productModel, categoriesModel });
   }
 
-  getAll = async (req, res) => {
-    const { disponible } = req.query;
-    const result = await this.productService.getAllProducts({ disponible });
+  getAll = async (req, res, next) => {
+    try {
+      const { disponible } = req.query;
+      const isAvailable = parseBooleanQueryParam(disponible);
 
-    const statusCode = result.success ? 200 : 404;
-    res.status(statusCode).json(result);
+      const products = await this.productService.getAllProducts({
+        disponible: isAvailable,
+      });
+
+      res.status(products.length ? 200 : 404).json({
+        success: products.length > 0,
+        data: products,
+        message: products.length ? "Productos encontrados" : "No hay productos",
+      });
+    } catch (error) {
+      next(error);
+    }
   };
 
   getById = async (req, res) => {
