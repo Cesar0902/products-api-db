@@ -9,7 +9,7 @@ export class ProductController {
     const { disponible } = req.query;
     const result = await this.productService.getAllProducts({ disponible });
 
-    const statusCode = result.success ? 200 : 200;
+    const statusCode = result.success ? 200 : 404;
     res.status(statusCode).json(result);
   };
 
