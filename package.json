@@ -2,11 +2,12 @@
   "name": "products-api",
   "version": "1.0.0",
   "description": "API para gestión de productos de una tienda",
-  "main": "src/infrastructure/http/server.js",
+  "main": "backend/server.js",
   "type": "module",
   "scripts": {
-    "start": "node src/infrastructure/http/server.js",
-    "dev": "node --watch src/infrastructure/http/server.js"
+    "start": "node backend/server.js",
+    "dev": "node --watch backend/server.js",
+    "test": "node --test backend/tests/products.test.js backend/tests/categories.test.js"
   },
   "keywords": [
     "api",

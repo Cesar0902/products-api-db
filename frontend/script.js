@@ -1,5 +1,5 @@
-// Configuración de la API
-const API_BASE_URL = 'http://localhost:3000';
+// Use the origin serving both the frontend and API.
+const API_BASE_URL = '';
 const API_ENDPOINTS = {
     products: `${API_BASE_URL}/productos`,
     available: `${API_BASE_URL}/productos/disponibles`
@@ -117,7 +117,9 @@ async function apiRequest(url, options = {}) {
         const data = await response.json();
         
         if (!response.ok) {
-            throw new Error(data.message || `Error ${response.status}`);
+            const error = new Error(data.message || `Error ${response.status}`);
+            error.errors = data.errors;
+            throw error;
         }
         
         return data;
@@ -165,6 +167,7 @@ async function createProduct(productData) {
             handleFormErrors(response.errors);
         }
     } catch (error) {
+        handleFormErrors(error.errors);
         showMessage(`Error al crear producto: ${error.message}`, 'error');
     }
 }
@@ -184,6 +187,7 @@ async function updateProduct(id, productData) {
             handleFormErrors(response.errors);
         }
     } catch (error) {
+        handleFormErrors(error.errors);
         showMessage(`Error al actualizar producto: ${error.message}`, 'error');
     }
 }
@@ -213,7 +217,7 @@ function showMessage(message, type = 'info') {
     messageElement.className = `message message-${type}`;
     
     const icon = getMessageIcon(type);
-    messageElement.innerHTML = `<i class="${icon}"></i> ${message}`;
+    messageElement.innerHTML = `<i class="${icon}"></i> ${escapeHtml(message)}`;
     
     elements.messageContainer.appendChild(messageElement);
     
@@ -291,15 +295,17 @@ function createProductCard(product) {
         </div>
         
         <div class="product-actions">
-            <button class="btn btn-warning" onclick="openEditModal(${product.id})">
+            <button class="btn btn-warning" data-action="edit">
                 <i class="fas fa-edit"></i> Editar
             </button>
-            <button class="btn btn-danger" onclick="openDeleteModal(${product.id}, '${escapeHtml(product.nombre)}')">
+            <button class="btn btn-danger" data-action="delete">
                 <i class="fas fa-trash"></i> Eliminar
             </button>
         </div>
     `;
     
+    card.querySelector('[data-action="edit"]').addEventListener('click', () => openEditModal(product.id));
+    card.querySelector('[data-action="delete"]').addEventListener('click', () => openDeleteModal(product.id, product.nombre));
     return card;
 }
 
